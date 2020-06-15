@@ -42,6 +42,36 @@
     #define RADIOLIB_NC                                 (0xFF)
     #define RADIOLIB_DEFAULT_SPI                        SPI
 
+  #elif defined(ARDUINO_ARCH_AVR) || defined(__MKL26Z64__) || defined(__MK20DX128__) || defined(__MK20DX256__) || defined(__MK64FX512__) || defined(__MK66FX1M0__) || defined(__IMXRT1062__)
+    #if defined(ARDUINO_ARCH_AVR)
+      #define RADIOLIB_PLATFORM                         "Teensy 2.0"
+    #elif defined(__MKL26Z64__)
+      #define RADIOLIB_PLATFORM                         "Teensy LC"
+    #elif defined(__MK20DX128__)
+      #define RADIOLIB_PLATFORM                         "Teensy 3.0"
+    #elif defined(__MK20DX256__)
+      #define RADIOLIB_PLATFORM                         "Teensy 3.1/3.2"
+    #elif defined(__MK64FX512__)
+      #define RADIOLIB_PLATFORM                         "Teensy 3.5"
+    #elif defined(__MK66FX1M0__)
+      #define RADIOLIB_PLATFORM                         "Teensy 3.6"
+    #elif defined(__IMXRT1062__)
+      #define RADIOLIB_PLATFORM                         "Teensy 4.0"
+    #else
+      #define RADIOLIB_PLATFORM                         "Teensy"
+    #endif
+
+    #define RADIOLIB_PIN_TYPE                           uint8_t
+    #define RADIOLIB_PIN_MODE                           uint8_t
+    #define RADIOLIB_PIN_STATUS                         uint8_t
+    #define RADIOLIB_INTERRUPT_STATUS                   RADIOLIB_PIN_STATUS
+    #define RADIOLIB_DIGITAL_PIN_TO_INTERRUPT(p)        digitalPinToInterrupt(p)
+    #define RADIOLIB_NC                                 (0xFF)
+    #define RADIOLIB_DEFAULT_SPI                        SPI
+    #define RADIOLIB_SOFTWARE_SERIAL_UNSUPPORTED
+    #define RADIOLIB_HARDWARE_SERIAL_PORT               Serial1
+    #define RADIOLIB_TONE_UNSUPPORTED
+
   #elif defined(ESP8266)
     // ESP8266 boards
     #define RADIOLIB_PLATFORM                           "ESP8266"
